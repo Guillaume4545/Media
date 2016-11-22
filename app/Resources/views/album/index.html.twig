@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block stylesheets %}
+    <link href="{{ asset('css/formulaireAlbum.css') }}" rel="stylesheet">
+{% endblock %}
+
+
+
+
+{% block body %}
+
+    <div class="container-fluid titre_des_albums">
+        <h1>Liste des Albums</h1>
+
+    <table>
+        <thead>
+
+        </thead>
+        <tbody>
+        {% for album in albums %}
+            <tr>
+                <td><a href="{{ path('album_show', { 'id': album.id }) }}">{{ album.id }}</a></td>
+                <td>{{ album.titreAlbum }}</td>
+                <td>{{ album.artiste }}</td>
+                <td>{{ album.genre }}</td>
+                <td>{{ album.support }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('album_show', { 'id': album.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('album_edit', { 'id': album.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('album_new') }}">Créer un nouvel album</a>
+        </li>
+    </ul>
+{% endblock %}
